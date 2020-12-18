@@ -1,0 +1,7 @@
+{
+	"C_Cpp.exclusionPolicy": "checkFilesAndFolders",
+	"files.watcherExclude": {
+		"**/*.g.i.cs": true
+	}
+    
+}

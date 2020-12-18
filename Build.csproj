@@ -1,0 +1,83 @@
+<Project InitialTargets="DelFiles" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<!-- App Info -->
+<PropertyGroup>
+    <AssemblyName>RevealAllHidden</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
+    <OutputPath>C:\ProgramData\Autodesk\Revit\Addins\MarathonScripts\$(AssemblyName)\</OutputPath>
+</PropertyGroup>
+
+<!-- Configuration info -->
+<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+</PropertyGroup>
+
+<!-- Configuration info -->
+<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+</PropertyGroup>
+
+<!-- Files to Compile -->
+<ItemGroup>
+    <!-- WPF Template -->
+
+    <!-- Real WPF pages go here -->
+
+    <!-- General -->
+    <Compile Include="*.cs" />
+    <Compile Include="../common_build_source/*.cs" />
+
+</ItemGroup>
+
+<!-- WPF Resources -->
+<ItemGroup>
+    <!-- Images for WPF -->
+    <Resource Include="./views/res/*.png" />
+
+    <!-- WPF Template -->
+
+    <!-- Real WPF pages go here -->
+
+</ItemGroup>
+
+<!-- DLL Refs -->
+<ItemGroup>
+    <Reference Include="RevitAPI"><HintPath>.\refs\RevitAPI.dll</HintPath></Reference>
+    <Reference Include="RevitAPIUI"><HintPath>.\refs\RevitAPIUI.dll</HintPath></Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms"/>
+    <Reference Include="System.Drawing"/>
+    <Reference Include="System.Management"/>
+    <Reference Include="System.Runtime.Serialization"/>
+    <Reference Include="System.Runtime.Serialization.Json"/>
+    <Reference Include="Microsoft.Office.Interop.Excel"/>
+    <Reference Include="System.Xaml"/>
+    <Reference Include="System.Xml"/>
+    <Reference Include="WindowsBase"/>
+    <Reference Include="PresentationCore"/>
+    <Reference Include="PresentationFramework"/>
+</ItemGroup>
+
+<!-- PreBuild Target to Delete ./obj -->
+<Target Name="DelFiles" >
+    <Delete Files="./obj/Debug/views/Template/*.cs" />
+    <Message Text="Custom File Cleanup Complete" />
+</Target>
+
+<!-- VS MSBuild Targets -->
+<Import  Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+</Project>
