@@ -26,8 +26,7 @@ namespace MainApp
             using(Transaction tx = new Transaction(doc, "unhide elements"))
             {
                 tx.Start();
-                foreach(var el in els)
-                {
+                foreach(var el in els) {
                     if(el.IsHidden(view))
                         doc.ActiveView.UnhideElements(new ElementId[] { el.Id});
                 }
